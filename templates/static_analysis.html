@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Analysis - Mobile App Security Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Mobile App Security Analysis</h1>
+      <nav class="nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="{{ url_for('static_analysis') }}">Static Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('malware_analysis') }}">Malware Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('dynamic_analysis') }}">Dynamic Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('reverse_engineering') }}">Reverse Engineering</a></li>
+        <a class="nav-link" href="{{ url_for('all_analysis') }}">All Analyses</a></li>
+          
+       </nav>
+     </div>
+     <div style="align-items: center;">
+    <h1>Static Analysis Result for {{ filename }}</h1>
+    <pre>{{ result | tojson(indent=2) }}</pre>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+    <h2 class="mt-3">Static Analysis through MOBSF V3.9</h2>
+    <iframe  src="http://localhost:8000" width="90%" height="600px" style="border:none; align-content: center;padding: 2%;"></iframe>
+   </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App Security Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Mobile App Security Analysis</h1>
+      <nav class="nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="{{ url_for('static_analysis') }}">Static Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('malware_analysis') }}">Malware Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('dynamic_analysis') }}">Dynamic Analysis</a></li>
+        <a class="nav-link" href="{{ url_for('reverse_engineering') }}">Reverse Engineering</a></li>
+        <a class="nav-link" href="{{ url_for('all_analysis') }}">All Analyses</a></li>
+          
+       </nav>
+     </div>
+</body>
+</html>
