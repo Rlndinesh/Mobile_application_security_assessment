@@ -1,18 +1,3 @@
-// // script.js
-// Java.perform(function() {
-//     console.log("Inside the frida script");
-
-//     // Example: Hook a method in a specific class
-//     var MainActivity = Java.use("com.example.app.MainActivity");
-//     MainActivity.onCreate.overload("android.os.Bundle").implementation = function(bundle) {
-//         console.log("MainActivity.onCreate called");
-//         this.onCreate(bundle);  // Call the original method
-//     };
-
-//     // Add more hooks as needed
-// });
-// Frida script for dynamic analysis
-
 Java.perform(function () {
     var Activity = Java.use('android.app.Activity');
     var Log = Java.use('android.util.Log');

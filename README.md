@@ -41,7 +41,7 @@ Mobile_application_security_assessment/
 
 1. Clone the repository:
     ```
-    git clone https://github.com/rlndinesh/Mobile_application_security_assessment.git
+    git clone https://github.com/Rlndinesh/Mobile_application_security_assessment.git
     cd Mobile_application_security_assessment
     ```
 
