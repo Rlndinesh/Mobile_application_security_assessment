@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Analysis Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Static Analysis Report</h1>
+
+    {% if error %}
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <h2>Analysis Summary</h2>
+        <table border="1">
+            <tr>
+                <th>File Name</th>
+                <td>{{ result.get('app_name', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>File Type</th>
+                <td>{{ result.get('file_type', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>MD5 Hash</th>
+                <td>{{ result.get('md5', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>SHA256 Hash</th>
+                <td>{{ result.get('sha256', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>Package Name</th>
+                <td>{{ result.get('package_name', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>Permissions</th>
+                <td>
+                    <ul>
+                        {% for perm in result.get('permissions', []) %}
+                            <li>{{ perm }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+              <th>Security Issues</th>
+              <td>
+                  {% if result.get('appsec', {}).get('high') or result.get('appsec', {}).get('warning') %}
+                      <ul>
+                          <li><strong>High-Risk Issues:</strong></li>
+                          <ul>
+                              {% for issue in result.get('appsec', {}).get('high', []) %}
+                                  <li>
+                                      <strong>{{ issue.title }}</strong><br>
+                                      {{ issue.description }}<br>
+                                      <em>Section: {{ issue.section }}</em>
+                                  </li>
+                              {% endfor %}
+                          </ul>
+          
+                          <li><strong>Warnings:</strong></li>
+                          <ul>
+                              {% for issue in result.get('appsec', {}).get('warning', []) %}
+                                  <li>
+                                      <strong>{{ issue.title }}</strong><br>
+                                      {{ issue.description }}<br>
+                                      <em>Section: {{ issue.section }}</em>
+                                  </li>
+                              {% endfor %}
+                          </ul>
+                      </ul>
+                  {% else %}
+                      No security issues found.
+                  {% endif %}
+              </td>
+          </tr>
+          
+        </table>
+    {% else %}
+        <p>No analysis result available.</p>
+    {% endif %}
+
+    {% if scoreboard %}
+        <h2>MobSF Security Score</h2>
+        <table border="1">
+            <tr>
+                <th>Score</th>
+                <td>{{ scoreboard.get('security_score', 'N/A') }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ scoreboard.get('version', 'N/A') }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>No scoreboard data available.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('index') }}">Upload Another File</a>
+</body>
+</html>
