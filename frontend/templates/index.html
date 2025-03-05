@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <h2>Upload APK for Analysis</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="apk" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if analysis %}
+    <h3>Analysis Result:</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>APK Filename</th>
+                <th>Crime</th>
+                <th>Confidence</th>
+                <th>Labels</th>
+                <th>Rule ID</th>
+                <th>Score</th>
+                <th>Permissions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crime in analysis.get("crimes", []) %}
+            <tr>
+                <td>{{ apk_filename }}</td>
+                <td>{{ crime["crime"] }}</td>
+                <td>{{ crime["confidence"] }}</td>
+                <td>{{ ', '.join(crime["label"]) }}</td>
+                <td>{{ crime["rule"] }}</td>
+                <td>{{ crime["score"] }}</td>
+                <td>{{ ', '.join(crime["permissions"]) if crime["permissions"] else 'None' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+</body>
+</html>
