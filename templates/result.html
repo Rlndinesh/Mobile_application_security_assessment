@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Dynamic Analysis Results for {{ filename }}</h2>
+    <table border="1">
+        <tr><th>Step</th><th>Output</th></tr>
+        <tr><td>Installation</td><td>{{ result.install_output }}</td></tr>
+        <tr><td>Launch</td><td>{{ result.launch_output }}</td></tr>
+        <tr><td>Frida Hook Output</td><td>{{ result.frida_output }}</td></tr>
+    </table>
+    <a href="/">Upload Another APK</a>
+</body>
+</html>
