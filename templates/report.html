@@ -1,0 +1,5 @@
+{% if scorecard %}
+    <h3>Security Scorecard</h3>
+    <pre>{{ scorecard | tojson(indent=2) }}</pre>
+{% endif %}
+<a href="/api/v1/download_pdf?hash={{ hash }}">Download PDF Report</a>
